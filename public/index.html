@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+<!-- Favicon -->
+<link rel="shortcut icon" href="images/favicon.png" />
+<!-- Plugins CSS -->
+<link rel="stylesheet" href="css/plugins.css">
+<!-- Bootstap CSS -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<!-- Main Style CSS -->
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="lightslider.css">
+
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="lightslider.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+    <script src="js/vendor/jquery-3.3.1.min.js"></script>
+    <script src="js/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="js/vendor/jquery.cookie.js"></script>
+    <script src="js/vendor/wow.min.js"></script>
+
+    <!-- javascript files -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/lazysizes.js"></script>
+    <script src="js/main.js"></script>
+    <title>React App</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+<!-- jquery files -->
+
+
+    <!-- newslider js -->
+    <script>
+      jQuery(document).ready(function(){  
+        jQuery('.closepopup').on('click', function () {
+          jQuery('#popup-container').fadeOut();
+          jQuery('#modalOverly').fadeOut();
+        });
+        
+        var visits = jQuery.cookie('visits') || 0;
+        visits++;
+        jQuery.cookie('visits', visits, { expires: 1, path: '/' });
+        console.debug(jQuery.cookie('visits')); 
+        if ( jQuery.cookie('visits') > 1 ) {
+        jQuery('#modalOverly').hide();
+        jQuery('#popup-container').hide();
+        } else {
+          var pageHeight = jQuery(document).height();
+          jQuery('<div id="modalOverly"></div>').insertBefore('body');
+          jQuery('#modalOverly').css("height", pageHeight);
+          jQuery('#popup-container').show();
+        }
+        if (jQuery.cookie('noShowWelcome')) { jQuery('#popup-container').hide(); jQuery('#active-popup').hide(); }
+      }); 
+      
+      jQuery(document).mouseup(function(e){
+        var container = jQuery('#popup-container');
+        if( !container.is(e.target)&& container.has(e.target).length === 0)
+        {
+        container.fadeOut();
+        jQuery('#modalOverly').fadeIn(200);
+        jQuery('#modalOverly').hide();
+        }
+      });
+    </script>
+  </body>
+</html>
